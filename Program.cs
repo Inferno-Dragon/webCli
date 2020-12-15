@@ -49,10 +49,10 @@ namespace webCLI
                 throw new System.InvalidOperationException("Uri is not valid");
             }
 
-           
 
-            // Check if file exists or create file if it does not exist
-            if (File.Exists(myObj.Output))
+
+            // Check if file path is correct
+            if (Path.IsPathFullyQualified(myObj.Output))
             {
                 Console.WriteLine("File is valid ");
             }
@@ -60,6 +60,7 @@ namespace webCLI
             else
             {
                 throw new System.InvalidOperationException("File is not valid");
+               
             }
 
             // Throw exception if both the parameters are empty
@@ -74,9 +75,6 @@ namespace webCLI
 
             string responseBody;
 
-            // Creating a file path 
-            String path = @"C:\Users\User\source\repos\webCli\webCLI.txt";
-
             // Making web request with uri 
             try
             {
@@ -87,22 +85,14 @@ namespace webCLI
                 Console.WriteLine(responseBody);
 
                 // If file exists overwrite
-                if (File.Exists(path))
-                    File.AppendAllText(path, responseBody);
+                if (File.Exists(myObj.Output))
+                    File.AppendAllText(myObj.Output, responseBody);
             }
             catch (HttpRequestException e)
             {
                 Console.WriteLine("\nException Caught!");
                 Console.WriteLine("Message :{0} ", e.Message);
             }
-
-
-
-
-
         }
-
-
-
     }
 }
