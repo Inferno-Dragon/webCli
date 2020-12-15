@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "webCLI": {
+      "commandName": "Project",
+      "commandLineArgs": " --output  C:\\Users\\User\\source\\repos\\webCLI\\webCLI.txt --uri https://www.google.com/ "
+    }
+  }
+}
