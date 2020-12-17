@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
 using System.Net.Http;
@@ -10,6 +11,19 @@ namespace webCLI
         static async System.Threading.Tasks.Task Main(string[] args)
 
         {
+            // Implemented Logger
+            using var loggerFactory = LoggerFactory.Create(builder =>
+            {
+                builder
+                    .AddFilter("Microsoft", LogLevel.Warning)
+                    .AddFilter("System", LogLevel.Warning)
+                    .AddFilter("LoggingConsoleApp.Program", LogLevel.Debug)
+                    .AddConsole()
+                    .AddEventLog();
+            });
+            ILogger logger = loggerFactory.CreateLogger<Program>();
+            logger.LogInformation("Program started");
+        
             // Check to see if the lenth of args is bigger than zero
             if (args.Length <= 0)
             {
@@ -35,14 +49,14 @@ namespace webCLI
             }
 
             // Printing parameters and hello world
-            Console.WriteLine("Hello World!");
-            Console.WriteLine(myObj.Uri);
-            Console.WriteLine(myObj.Output);
+            logger.LogInformation("Hello World!");
+            logger.LogInformation(myObj.Uri);
+            logger.LogInformation(myObj.Output);
 
             // Check if uri is valid
             if (Uri.IsWellFormedUriString(myObj.Uri, UriKind.RelativeOrAbsolute))
             {
-                Console.WriteLine("Uri is valid");
+                logger.LogInformation("Uri is valid");
             }
             else
             {
@@ -54,12 +68,12 @@ namespace webCLI
             // Check if file path is correct
             if (Path.IsPathFullyQualified(myObj.Output))
             {
-                Console.WriteLine("File is valid ");
+                logger.LogInformation("File name entered is valid ");
             }
 
             else
             {
-                throw new System.InvalidOperationException("File is not valid");
+                throw new System.InvalidOperationException("File name is not valid");
                
             }
 
@@ -74,6 +88,7 @@ namespace webCLI
             HttpClient client = new HttpClient();
 
             string responseBody;
+ 
 
             // Making web request with uri 
             try
@@ -82,17 +97,17 @@ namespace webCLI
                 response.EnsureSuccessStatusCode();
                 responseBody = await response.Content.ReadAsStringAsync();
 
-                Console.WriteLine(responseBody);
+                logger.LogInformation(responseBody);
 
-                // If file exists overwrite
-                if (File.Exists(myObj.Output))
-                    File.AppendAllText(myObj.Output, responseBody);
+                File.WriteAllText(myObj.Output, responseBody);
+
             }
             catch (HttpRequestException e)
             {
-                Console.WriteLine("\nException Caught!");
-                Console.WriteLine("Message :{0} ", e.Message);
+                logger.LogInformation("\nException Caught!");
+                logger.LogInformation("Message :{0} ", e.Message);
             }
+            
         }
     }
 }
