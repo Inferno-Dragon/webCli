@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\repos\\webCLI\\webCLI.csproj": {}
+    "C:\\Users\\User\\source\\repos\\webCli\\webCLI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\webCLI\\webCLI.csproj": {
+    "C:\\Users\\User\\source\\repos\\webCli\\webCLI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\webCLI\\webCLI.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\webCli\\webCLI.csproj",
         "projectName": "webCLI",
-        "projectPath": "C:\\Users\\User\\source\\repos\\webCLI\\webCLI.csproj",
+        "projectPath": "C:\\Users\\User\\source\\repos\\webCli\\webCLI.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\webCLI\\obj\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\webCli\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

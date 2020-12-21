@@ -1,4 +1,4 @@
-﻿
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
@@ -10,7 +10,14 @@ namespace webCLI
     {
         static async System.Threading.Tasks.Task Main(string[] args)
 
-        {
+        {   
+            // Implemented configurator
+            var builder = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            IConfigurationRoot configuration = builder.Build();
+
             // Implemented Logger
             using var loggerFactory = LoggerFactory.Create(builder =>
             {
@@ -18,8 +25,8 @@ namespace webCLI
                     .AddFilter("Microsoft", LogLevel.Warning)
                     .AddFilter("System", LogLevel.Warning)
                     .AddFilter("LoggingConsoleApp.Program", LogLevel.Debug)
-                    .AddConsole()
-                    .AddEventLog();
+                    .AddConsole();
+                    
             });
             ILogger logger = loggerFactory.CreateLogger<Program>();
             logger.LogInformation("Program started");
@@ -109,5 +116,7 @@ namespace webCLI
             }
             
         }
+
+        
     }
 }
