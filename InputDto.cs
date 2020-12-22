@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace webCLI
+﻿namespace webCLI
 {
     class InputDto
     {
@@ -15,7 +9,7 @@ namespace webCLI
 
         // Created property output
         public string Output
-        { get; set;}
+        { get; set; }
 
 
     }

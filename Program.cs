@@ -10,11 +10,11 @@ namespace webCLI
     {
         static async System.Threading.Tasks.Task Main(string[] args)
 
-        {   
+        {
             // Implemented configurator
             var builder = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            .AddJsonFile("settings.json", optional: true, reloadOnChange: true);
 
             IConfigurationRoot configuration = builder.Build();
 
@@ -26,32 +26,35 @@ namespace webCLI
                     .AddFilter("System", LogLevel.Warning)
                     .AddFilter("LoggingConsoleApp.Program", LogLevel.Debug)
                     .AddConsole();
-                    
+
             });
             ILogger logger = loggerFactory.CreateLogger<Program>();
             logger.LogInformation("Program started");
-        
+
+            InputDto myObj = new InputDto();
+            
             // Check to see if the lenth of args is bigger than zero
             if (args.Length <= 0)
             {
-                throw new System.InvalidOperationException("No args passed in the CLI");
+                myObj.Uri = configuration.GetSection("settings:uri").Value;
+                myObj.Output = configuration.GetSection("settings:output").Value;
             }
-
-            InputDto myObj = new InputDto();
-
-            // Looped through the array using a advanced for loop
-            for (int i = 0; i < args.Length; i++)
+            else
             {
-
-                if (args[i] == "--uri")
+                // Looped through the array using a advanced for loop
+                for (int i = 0; i < args.Length; i++)
                 {
-                    myObj.Uri = args[i + 1];
 
-                }
+                    if (args[i] == "--uri")
+                    {
+                        myObj.Uri = args[i + 1];
 
-                if (args[i] == "--output")
-                {
-                    myObj.Output = args[i + 1];
+                    }
+
+                    if (args[i] == "--output")
+                    {
+                        myObj.Output = args[i + 1];
+                    }
                 }
             }
 
@@ -70,8 +73,6 @@ namespace webCLI
                 throw new System.InvalidOperationException("Uri is not valid");
             }
 
-
-
             // Check if file path is correct
             if (Path.IsPathFullyQualified(myObj.Output))
             {
@@ -81,7 +82,7 @@ namespace webCLI
             else
             {
                 throw new System.InvalidOperationException("File name is not valid");
-               
+
             }
 
             // Throw exception if both the parameters are empty
@@ -95,7 +96,6 @@ namespace webCLI
             HttpClient client = new HttpClient();
 
             string responseBody;
- 
 
             // Making web request with uri 
             try
@@ -114,9 +114,9 @@ namespace webCLI
                 logger.LogInformation("\nException Caught!");
                 logger.LogInformation("Message :{0} ", e.Message);
             }
-            
+
         }
 
-        
+
     }
 }
