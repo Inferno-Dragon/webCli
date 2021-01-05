@@ -6,11 +6,9 @@
         public string Uri
         { get; set; }
 
-
         // Created property output
         public string Output
         { get; set; }
-
 
     }
 }

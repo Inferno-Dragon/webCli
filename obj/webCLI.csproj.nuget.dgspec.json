@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\repos\\webCli\\webCLI.csproj": {}
+    "C:\\Users\\User\\source\\repos\\webCLI\\webCLI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\webCli\\webCLI.csproj": {
+    "C:\\Users\\User\\source\\repos\\webCLI\\webCLI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\webCli\\webCLI.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\webCLI\\webCLI.csproj",
         "projectName": "webCLI",
-        "projectPath": "C:\\Users\\User\\source\\repos\\webCli\\webCLI.csproj",
+        "projectPath": "C:\\Users\\User\\source\\repos\\webCLI\\webCLI.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\webCli\\obj\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\webCLI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -45,6 +45,14 @@
           "targetAlias": "net5.0",
           "dependencies": {
             "Microsoft.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.Abstractions": {
               "target": "Package",
               "version": "[5.0.0, )"
             },

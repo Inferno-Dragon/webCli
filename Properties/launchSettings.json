@@ -1,7 +1,8 @@
 {
   "profiles": {
     "webCLI": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "--uri https://www.news24.com --output \"C:\\Users\\User\\OneDrive\\Desktop\\New Text Document.txt\""
     }
   }
 }
